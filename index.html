@@ -1,744 +1,311 @@
-    <div class="container">
-        <div>
-            <h1>The Oak King</h1>
-            <p class="subtitle">Guardian of Seasons • Oracle of Natural Power</p>
-        </div>
-        
-        <div class="main-content">
-            <div class="oak-king-container">
-                <div class="tree-trunk">
-                    <div class="bark-line"></div>
-                    <div class="bark-line"></div>
-                    <div class="bark-line"></div>
-                    <div class="bark-line"></div>
-                    <div class="bark-line"></div>
-                    <div class="bark-line"></div>
-                    <div class="bark-line"></div>
-                    <div class="bark-groove"></div>
-                    <div class="bark-groove"></div>
-                    <div class="bark-groove"></div>
-                    <div class="bark-groove"></div>
-                    
-                    <div class="oak-king-face">
-                        <div class="tree-ring"></div>
-                        <div class="tree-ring"></div>
-                        <div class="tree-ring"></div>
-                        
-                        <div class="eye left-eye">
-                            <div class="pupil"></div>
-                        </div>
-                        <div class="eye right-eye">
-                            <div class="pupil"></div>
-                        </div>
-                        
-                        <div class="nose"></div>
-                        <div class="mouth"></div>
-                        
-                        <div class="speech-bubble" id="speechBubble">
-                            <div id="speechText"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="oak-crown">
-                    <div class="branch main-branch"></div>
-                    <div class="branch branch-left"></div>
-                    <div class="branch branch-right"></div>
-                    <div class="branch branch-left-2"></div>
-                    <div class="branch branch-right-2"></div>
-                    
-                    <div class="leaf"></div>
-                    <div class="leaf"></div>
-                    <div class="leaf"></div>
-                    <div class="leaf"></div>
-                    <div class="leaf"></div>
-                    <div class="leaf"></div>
-                    <div class="leaf"></div>
-                    <div class="leaf"></div>
-                    <div class="leaf"></div>
-                    <div class="leaf"></div>
-                    <div class="leaf"></div>
-                    <div class="leaf"></div>
-                    <div class="leaf"></div>
-                    <div class="leaf"></div>
-                    <div class="leaf"></div>
-                    <div class="leaf"></div>
-                    <div class="leaf"></div>
-                    <div class="leaf"></div>
-                    <div class="leaf"></div>
-                    <div class="leaf"></div>
-                    <div class="leaf"></div>
-                    <div class="leaf"></div>
-                    <div class="leaf"></div>
-                    <div class="leaf"></div>
-                </div>
-            </div>
-        </div>
-    </div><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Oak King - Seasonal Power Oracle</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SVG Oak King Speaking</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #1e1e1e;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+      }
+
+      .oak-king-container {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .tree-sprite {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("oak-king-sheet-horizontal.png");
+        background-size: 400% 100%;
+        background-repeat: no-repeat;
+        background-position: 0% 0%;
+        animation-name: speakSprite;
+        animation-duration: 0.5s;
+        animation-timing-function: steps(4, jump-none);
+        animation-direction: alternate;
+        animation-iteration-count: 10;
+        transform-origin: center center;
+        z-index: 10;
+      }
+
+      #speechText {
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translateX(-50%);
+        color: rgba(255, 255, 255, 0.8);
+        font-family: "Georgia", serif;
+        font-size: 2rem;
+        font-weight: bold;
+        text-align: center;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        z-index: 20;
+        opacity: 0;
+        animation: fadeInOut 8s ease-in-out infinite;
+        max-width: 80%;
+        line-height: 1.4;
+      }
+
+      @keyframes fadeInOut {
+        0% {
+          opacity: 0;
+          transform: translateX(-50%) translateY(20px);
         }
-
-        body {
-            font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #1a4332 0%, #2d5016 50%, #4a7c59 100%);
-            height: 100vh;
-            color: #f4e5d3;
-            overflow: hidden;
-            margin: 0;
-            padding: 0;
+        10% {
+          opacity: 1;
+          transform: translateX(-50%) translateY(0);
         }
-
-        .forest-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(ellipse at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%);
-            z-index: -1;
+        80% {
+          opacity: 1;
+          transform: translateX(-50%) translateY(0);
         }
-
-        .container {
-            max-width: 100vw;
-            height: 100vh;
-            margin: 0;
-            padding: 10px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+        100% {
+          opacity: 0;
+          transform: translateX(-50%) translateY(-20px);
         }
+      }
 
-        h1 {
-            font-size: 2.5rem;
-            color: #d4af37;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
-            margin: 10px 0;
-            letter-spacing: 2px;
+      @keyframes speakSprite {
+        0% {
+          background-position: 0% 0%;
         }
-
-        .subtitle {
-            font-size: 1rem;
-            color: #c9b037;
-            margin-bottom: 10px;
-            font-style: italic;
+        100% {
+          background-position: 100% 0%;
         }
+      }
 
-        .oak-king-container {
-            position: relative;
-            width: 350px;
-            height: 450px;
-            margin: 0 auto;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
-            overflow: visible;
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .tree-sprite {
+          background-size: 400% 100%;
         }
-
-        /* Main Tree Trunk */
-        .tree-trunk {
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 250px;
-            height: 380px;
-            background: linear-gradient(180deg, #8b4513 0%, #654321 30%, #5d4e37 60%, #3e2723 100%);
-            border-radius: 125px 125px 25px 25px;
-            box-shadow: inset -20px 0 40px rgba(0,0,0,0.4), inset 20px 0 40px rgba(139,69,19,0.2);
+        #speechText {
+          font-size: 1.5rem;
+          top: 15%;
         }
+      }
 
-        /* Bark texture lines on trunk */
-        .bark-line {
-            position: absolute;
-            width: 80%;
-            height: 4px;
-            background: rgba(0,0,0,0.5);
-            border-radius: 2px;
-            left: 10%;
+      @media (max-width: 480px) {
+        .tree-sprite {
+          background-size: 400% 100%;
         }
-
-        .bark-line:nth-child(1) { top: 80px; }
-        .bark-line:nth-child(2) { top: 140px; }
-        .bark-line:nth-child(3) { top: 200px; }
-        .bark-line:nth-child(4) { top: 260px; }
-        .bark-line:nth-child(5) { top: 320px; }
-        .bark-line:nth-child(6) { top: 380px; }
-        .bark-line:nth-child(7) { top: 440px; }
-
-        /* Vertical bark grooves */
-        .bark-groove {
-            position: absolute;
-            width: 6px;
-            height: 60%;
-            background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.6) 100%);
-            border-radius: 3px;
-            top: 20%;
+        #speechText {
+          font-size: 1.2rem;
+          top: 10%;
+          max-width: 90%;
         }
-
-        .bark-groove:nth-child(8) { left: 20px; }
-        .bark-groove:nth-child(9) { right: 20px; }
-        .bark-groove:nth-child(10) { left: 50px; }
-        .bark-groove:nth-child(11) { right: 50px; }
-
-        /* Oak King Face - embedded in trunk */
-        .oak-king-face {
-            position: absolute;
-            width: 200px;
-            height: 220px;
-            top: 80px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: radial-gradient(ellipse at center, #6d5a47 20%, #5d4e37 60%, #4a3728 100%);
-            border-radius: 100px 100px 80px 80px;
-            box-shadow: inset -15px -15px 30px rgba(0,0,0,0.6), inset 15px 15px 30px rgba(109,90,71,0.2);
-            border: 3px solid rgba(0,0,0,0.3);
-        }
-
-        /* Tree rings on face */
-        .tree-ring {
-            position: absolute;
-            border: 2px solid rgba(101,67,33,0.3);
-            border-radius: 50%;
-        }
-
-        .tree-ring:nth-child(1) {
-            width: 80px;
-            height: 60px;
-            top: 100px;
-            left: 30px;
-        }
-
-        .tree-ring:nth-child(2) {
-            width: 60px;
-            height: 40px;
-            top: 120px;
-            right: 40px;
-        }
-
-        .tree-ring:nth-child(3) {
-            width: 90px;
-            height: 70px;
-            bottom: 80px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        /* Eyes - carved deeper into trunk */
-        .eye {
-            position: absolute;
-            width: 35px;
-            height: 25px;
-            background: radial-gradient(ellipse, #1a1a1a 20%, #2d1810 50%, #3e2723 80%);
-            border-radius: 50%;
-            top: 60px;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.9), 0 2px 4px rgba(0,0,0,0.7);
-            border: 2px solid rgba(0,0,0,0.4);
-        }
-
-        .left-eye {
-            left: 40px;
-            transform: rotate(-5deg);
-        }
-
-        .right-eye {
-            right: 40px;
-            transform: rotate(5deg);
-        }
-
-        .pupil {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background: radial-gradient(circle, #0f3f0f 40%, #2d4a22 100%);
-            border-radius: 50%;
-            top: 8px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: eyeGlow 3s ease-in-out infinite;
-        }
-
-        @keyframes eyeGlow {
-            0%, 100% { box-shadow: 0 0 6px #4a7c59; }
-            50% { box-shadow: 0 0 12px #6ba56f, 0 0 18px #4a7c59; }
-        }
-
-        /* Nose - carved wood bump */
-        .nose {
-            position: absolute;
-            width: 20px;
-            height: 28px;
-            background: radial-gradient(ellipse, #4a3728 30%, #3e2723 70%);
-            border-radius: 60% 40% 70% 30%;
-            top: 100px;
-            left: 50%;
-            transform: translateX(-50%) rotate(3deg);
-            box-shadow: inset -3px -3px 8px rgba(0,0,0,0.7), 2px 2px 4px rgba(0,0,0,0.5);
-        }
-
-        /* Mouth - deeply carved into trunk */
-        .mouth {
-            position: absolute;
-            width: 70px;
-            height: 25px;
-            background: linear-gradient(180deg, #1a0f08 0%, #0d0604 100%);
-            border-radius: 0 0 35px 35px;
-            top: 140px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: talkAnimation 2s ease-in-out infinite;
-            box-shadow: inset 0 -10px 25px rgba(0,0,0,0.95), 0 3px 6px rgba(0,0,0,0.8);
-            border: 3px solid rgba(0,0,0,0.6);
-            border-top: none;
-        }
-
-        @keyframes talkAnimation {
-            0%, 100% { 
-                height: 20px; 
-                transform: translateX(-50%) scaleY(0.5);
-            }
-            25% { 
-                height: 45px; 
-                transform: translateX(-50%) scaleY(1.2);
-            }
-            50% { 
-                height: 30px; 
-                transform: translateX(-50%) scaleY(0.8);
-            }
-            75% { 
-                height: 50px; 
-                transform: translateX(-50%) scaleY(1.3);
-            }
-        }
-
-        /* Oak Crown - positioned above trunk */
-        .oak-crown {
-            position: absolute;
-            top: -100px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 600px;
-            height: 250px;
-        }
-
-        /* Main branch structure */
-        .branch {
-            position: absolute;
-            background: linear-gradient(90deg, #654321 0%, #8b4513 50%, #654321 100%);
-            border-radius: 8px;
-        }
-
-        .main-branch {
-            width: 120px;
-            height: 10px;
-            top: 180px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .branch-left {
-            width: 80px;
-            height: 8px;
-            top: 160px;
-            left: 150px;
-            transform: rotate(-25deg);
-        }
-
-        .branch-right {
-            width: 80px;
-            height: 8px;
-            top: 160px;
-            right: 150px;
-            transform: rotate(25deg);
-        }
-
-        .branch-left-2 {
-            width: 60px;
-            height: 6px;
-            top: 140px;
-            left: 120px;
-            transform: rotate(-40deg);
-        }
-
-        .branch-right-2 {
-            width: 60px;
-            height: 6px;
-            top: 140px;
-            right: 120px;
-            transform: rotate(40deg);
-        }
-
-        .leaf {
-            position: absolute;
-            width: 35px;
-            height: 50px;
-            background: linear-gradient(45deg, #2d5016 0%, #228b22 30%, #32cd32 60%, #90ee90 100%);
-            border-radius: 0 80% 0 80%;
-            animation: leafSway 4s ease-in-out infinite;
-            box-shadow: inset -2px -2px 6px rgba(0,0,0,0.3);
-        }
-
-        /* Leaf vein */
-        .leaf::before {
-            content: '';
-            position: absolute;
-            width: 1px;
-            height: 80%;
-            background: linear-gradient(180deg, #1a4332 0%, #2d5016 100%);
-            left: 50%;
-            top: 10%;
-            transform: translateX(-50%);
-        }
-
-        /* Expanded leaf positioning for fuller crown */
-        .leaf:nth-child(4) { top: 20px; left: 100px; animation-delay: 0s; transform: rotate(-20deg); }
-        .leaf:nth-child(5) { top: 10px; left: 140px; animation-delay: 0.3s; transform: rotate(10deg); }
-        .leaf:nth-child(6) { top: 5px; left: 180px; animation-delay: 0.6s; transform: rotate(-5deg); }
-        .leaf:nth-child(7) { top: 8px; left: 220px; animation-delay: 0.9s; transform: rotate(15deg); }
-        .leaf:nth-child(8) { top: 15px; left: 260px; animation-delay: 1.2s; transform: rotate(-10deg); }
-        .leaf:nth-child(9) { top: 25px; left: 300px; animation-delay: 1.5s; transform: rotate(20deg); }
-        .leaf:nth-child(10) { top: 20px; left: 340px; animation-delay: 1.8s; transform: rotate(-15deg); }
-        .leaf:nth-child(11) { top: 12px; left: 380px; animation-delay: 2.1s; transform: rotate(25deg); }
-        .leaf:nth-child(12) { top: 18px; left: 420px; animation-delay: 2.4s; transform: rotate(-8deg); }
-        .leaf:nth-child(13) { top: 35px; left: 120px; animation-delay: 0.4s; transform: rotate(30deg); }
-        .leaf:nth-child(14) { top: 40px; left: 160px; animation-delay: 0.7s; transform: rotate(-25deg); }
-        .leaf:nth-child(15) { top: 45px; left: 200px; animation-delay: 1.0s; transform: rotate(12deg); }
-        .leaf:nth-child(16) { top: 42px; left: 240px; animation-delay: 1.3s; transform: rotate(-18deg); }
-        .leaf:nth-child(17) { top: 38px; left: 280px; animation-delay: 1.6s; transform: rotate(22deg); }
-        .leaf:nth-child(18) { top: 44px; left: 320px; animation-delay: 1.9s; transform: rotate(-12deg); }
-        .leaf:nth-child(19) { top: 48px; left: 360px; animation-delay: 2.2s; transform: rotate(18deg); }
-        .leaf:nth-child(20) { top: 50px; left: 400px; animation-delay: 2.5s; transform: rotate(-22deg); }
-        .leaf:nth-child(21) { top: 60px; left: 140px; animation-delay: 0.5s; transform: rotate(35deg); }
-        .leaf:nth-child(22) { top: 65px; left: 180px; animation-delay: 0.8s; transform: rotate(-30deg); }
-        .leaf:nth-child(23) { top: 62px; left: 220px; animation-delay: 1.1s; transform: rotate(8deg); }
-        .leaf:nth-child(24) { top: 68px; left: 260px; animation-delay: 1.4s; transform: rotate(-15deg); }
-        .leaf:nth-child(25) { top: 55px; left: 300px; animation-delay: 1.7s; transform: rotate(28deg); }
-        .leaf:nth-child(26) { top: 58px; left: 340px; animation-delay: 2.0s; transform: rotate(-20deg); }
-        .leaf:nth-child(27) { top: 52px; left: 380px; animation-delay: 2.3s; transform: rotate(16deg); }
-
-        @keyframes leafSway {
-            0%, 100% { transform: rotate(-5deg); }
-            50% { transform: rotate(5deg); }
-        }
-
-        /* Power Display */
-        .power-display {
-            background: rgba(0,0,0,0.7);
-            border: 3px solid #d4af37;
-            border-radius: 15px;
-            padding: 30px;
-            margin: 40px 0;
-            backdrop-filter: blur(10px);
-        }
-
-        .current-date {
-            font-size: 1.5rem;
-            color: #c9b037;
-            margin-bottom: 20px;
-        }
-
-        .power-level {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin: 20px 0;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-            animation: powerPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes powerPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        .strength { color: #32cd32; }
-        .moderate { color: #ffd700; }
-        .weakness { color: #ff6b6b; }
-
-        .power-description {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #e6d7c3;
-            margin-top: 15px;
-        }
-
-        .seasonal-info {
-            background: rgba(0,0,0,0.5);
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 30px;
-        }
-
-        .date-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .date-item {
-            background: rgba(212, 175, 55, 0.2);
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid #d4af37;
-        }
-
-        /* Speech Bubble */
-        .speech-bubble {
-            position: absolute;
-            right: -240px;
-            top: 30px;
-            width: 220px;
-            background: rgba(244, 229, 211, 0.95);
-            color: #2d1810;
-            padding: 15px;
-            border-radius: 15px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
-            border: 2px solid #d4af37;
-            font-size: 0.9rem;
-            line-height: 1.4;
-            animation: speechPulse 3s ease-in-out infinite;
-        }
-
-        .speech-bubble::before {
-            content: '';
-            position: absolute;
-            left: -15px;
-            top: 30px;
-            width: 0;
-            height: 0;
-            border-top: 15px solid transparent;
-            border-right: 15px solid rgba(244, 229, 211, 0.95);
-            border-bottom: 15px solid transparent;
-        }
-
-        .speech-bubble::after {
-            content: '';
-            position: absolute;
-            left: -18px;
-            top: 28px;
-            width: 0;
-            height: 0;
-            border-top: 17px solid transparent;
-            border-right: 17px solid #d4af37;
-            border-bottom: 17px solid transparent;
-        }
-
-        @keyframes speechPulse {
-            0%, 100% { transform: scale(1); opacity: 0.9; }
-            50% { transform: scale(1.02); opacity: 1; }
-        }
-
-        .power-level {
-            font-weight: bold;
-            margin: 5px 0;
-        }
-
-        .strength { color: #228b22; }
-        .moderate { color: #b8860b; }
-        .weakness { color: #dc143c; }
-
-        @keyframes fadeInOut {
-            0%, 100% { opacity: 0; }
-            50% { opacity: 1; }
-        }
+      }
     </style>
-</head>
-<body>
-    <div class="forest-bg"></div>
-    
-    <div class="container">
-        <h1>The Oak King</h1>
-        <p class="subtitle">Guardian of Seasons • Oracle of Natural Power</p>
-        
-        <div class="oak-king-container">
-            <div class="tree-trunk">
-                <div class="bark-line"></div>
-                <div class="bark-line"></div>
-                <div class="bark-line"></div>
-                <div class="bark-line"></div>
-                <div class="bark-line"></div>
-                <div class="bark-line"></div>
-                <div class="bark-line"></div>
-                <div class="bark-groove"></div>
-                <div class="bark-groove"></div>
-                <div class="bark-groove"></div>
-                <div class="bark-groove"></div>
-                
-                <div class="oak-king-face">
-                    <div class="tree-ring"></div>
-                    <div class="tree-ring"></div>
-                    <div class="tree-ring"></div>
-                    
-                    <div class="eye left-eye">
-                        <div class="pupil"></div>
-                    </div>
-                    <div class="eye right-eye">
-                        <div class="pupil"></div>
-                    </div>
-                    
-                    <div class="nose"></div>
-                    <div class="mouth"></div>
-                    
-                    <div class="speaking-indicator">Speaking the ancient wisdom...</div>
-                </div>
-            </div>
-            
-            <div class="oak-crown">
-                <div class="branch main-branch"></div>
-                <div class="branch branch-left"></div>
-                <div class="branch branch-right"></div>
-                
-                <div class="leaf"></div>
-                <div class="leaf"></div>
-                <div class="leaf"></div>
-                <div class="leaf"></div>
-                <div class="leaf"></div>
-                <div class="leaf"></div>
-                <div class="leaf"></div>
-                <div class="leaf"></div>
-                <div class="leaf"></div>
-            </div>
-        </div>
-        
-        <div class="power-display">
-            <div class="current-date" id="currentDate"></div>
-            <div class="power-level" id="powerLevel"></div>
-            <div class="power-description" id="powerDescription"></div>
-        </div>
-        
-        <div class="seasonal-info">
-            <h3>Seasonal Power Dates</h3>
-            <div class="date-list" id="dateList"></div>
-        </div>
+  </head>
+  <body>
+    <div class="oak-king-container">
+      <div class="tree-sprite"></div>
+      <div id="speechText">
+        "I feel incredibly strong! My strength surges through every branch and
+        root!"
+      </div>
     </div>
-
-    <script>
-        // Static array of dates and power levels
-        const seasonalDates = [
-            { date: '2025-03-20', level: 90, name: 'Spring Equinox', description: 'The Oak King awakens with tremendous power as nature bursts forth.' },
-            { date: '2025-06-21', level: 100, name: 'Summer Solstice', description: 'Peak power! The Oak King reigns supreme in the height of summer.' },
-            { date: '2025-09-22', level: 60, name: 'Autumn Equinox', description: 'Power wanes as the Oak King prepares to yield to darker forces.' },
-            { date: '2025-12-21', level: 10, name: 'Winter Solstice', description: 'Weakest point. The Oak King slumbers, waiting for spring\'s return.' },
-            { date: '2025-05-01', level: 85, name: 'Beltane', description: 'Strong fertility power as the green world reaches full bloom.' },
-            { date: '2025-08-01', level: 95, name: 'Lughnasadh', description: 'Harvest strength flows through the Oak King\'s ancient wisdom.' },
-            { date: '2025-02-01', level: 25, name: 'Imbolc', description: 'First stirrings of power as winter\'s grip slowly loosens.' },
-            { date: '2025-10-31', level: 35, name: 'Samhain', description: 'Moderate power tinged with the mystery of the thinning veil.' }
-        ];
-
-        function calculatePowerLevel() {
-            const today = new Date();
-            const currentDateStr = today.toISOString().split('T')[0];
-            
-            // Find the closest date
-            let closestDate = seasonalDates[0];
-            let minDiff = Math.abs(new Date(currentDateStr) - new Date(closestDate.date));
-            
-            seasonalDates.forEach(dateObj => {
-                const diff = Math.abs(new Date(currentDateStr) - new Date(dateObj.date));
-                if (diff < minDiff) {
-                    minDiff = diff;
-                    closestDate = dateObj;
-                }
-            });
-            
-            // Calculate days difference
-            const daysDiff = minDiff / (1000 * 60 * 60 * 24);
-            
-            // Adjust power level based on proximity (closer = more accurate to the stated level)
-            let adjustedLevel = closestDate.level;
-            if (daysDiff > 30) {
-                adjustedLevel = Math.max(10, adjustedLevel - (daysDiff - 30) * 0.5);
-            }
-            
-            return {
-                level: Math.round(adjustedLevel),
-                closest: closestDate,
-                daysDiff: Math.round(daysDiff)
-            };
-        }
-
-        function createConfetti() {
-            const colors = ['#d4af37', '#32cd32', '#ff6b6b', '#4169e1', '#ffd700', '#ff69b4'];
-            
-            for (let i = 0; i < 50; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.animationDelay = Math.random() * 3 + 's';
-                confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
-                
-                if (Math.random() > 0.5) {
-                    confetti.style.borderRadius = '50%';
-                }
-                
-                document.body.appendChild(confetti);
-                
-                // Remove confetti after animation
-                setTimeout(() => {
-                    if (confetti.parentNode) {
-                        confetti.parentNode.removeChild(confetti);
-                    }
-                }, 5000);
-            }
-        }
-
-        function createHorns() {
-            const hornLeft = document.createElement('div');
-            hornLeft.className = 'horn horn-left';
-            hornLeft.innerHTML = '🎺';
-            document.body.appendChild(hornLeft);
-            
-            const hornRight = document.createElement('div');
-            hornRight.className = 'horn horn-right';
-            hornRight.innerHTML = '🎺';
-            document.body.appendChild(hornRight);
-            
-            // Remove horns after animation
-            setTimeout(() => {
-                if (hornLeft.parentNode) hornLeft.parentNode.removeChild(hornLeft);
-                if (hornRight.parentNode) hornRight.parentNode.removeChild(hornRight);
-            }, 3000);
-        }
-
-        function celebrate() {
-            createConfetti();
-            createHorns();
-        }
-
-        function updateDisplay() {
-            const today = new Date();
-            const power = calculatePowerLevel();
-            
-            // Update speech text based on power level
-            const speechElement = document.getElementById('speechText');
-            let speechText;
-            
-            if (power.level >= 80) {
-                speechText = `"I feel incredibly strong! My strength surges through every branch and root!"`;
-                // Trigger celebration for great strength
-                celebrate();
-            } else if (power.level >= 50) {
-                speechText = `"I feel moderately strong. My power flows steadily."`;
-            } else {
-                speechText = `"I feel weak... My strength is low right now."`;
-            }
-            
-            speechElement.textContent = speechText;
-        }
-
-        // Initialize
-        updateDisplay();
-        
-        // Update every hour
-        setInterval(updateDisplay, 3600000);
-    </script>
-</body>
+  </body>
 </html>
+
+<script type="text/javascript">
+  const animatedElement = document.querySelector(".tree-sprite");
+
+  function setRandomAnimationDuration() {
+    // Generate a random duration within a desired range (e.g., 1s to 3s)
+    const minDuration = 0.4; // seconds
+    const maxDuration = 0.6; // seconds
+    const randomDuration =
+      Math.random() * (maxDuration - minDuration) + minDuration;
+    console.log(randomDuration);
+    // Apply the random duration to the element's style
+    animatedElement.style.animationDuration = `${randomDuration}s`;
+  }
+
+  // Call the function initially to set the first duration
+  setRandomAnimationDuration();
+
+  // Call the function every time the animation ends to set a new duration
+  animatedElement.addEventListener(
+    "animationiteration",
+    setRandomAnimationDuration
+  );
+
+  const seasonalDates = [
+    {
+      date: "2025-03-20",
+      level: 90,
+      name: "Spring Equinox",
+      description:
+        "The Oak King awakens with tremendous power as nature bursts forth.",
+    },
+    {
+      date: "2025-06-21",
+      level: 100,
+      name: "Summer Solstice",
+      description:
+        "Peak power! The Oak King reigns supreme in the height of summer.",
+    },
+    {
+      date: "2025-09-22",
+      level: 60,
+      name: "Autumn Equinox",
+      description:
+        "Power wanes as the Oak King prepares to yield to darker forces.",
+    },
+    {
+      date: "2025-12-21",
+      level: 10,
+      name: "Winter Solstice",
+      description:
+        "Weakest point. The Oak King slumbers, waiting for spring's return.",
+    },
+    {
+      date: "2025-05-01",
+      level: 85,
+      name: "Beltane",
+      description:
+        "Strong fertility power as the green world reaches full bloom.",
+    },
+    {
+      date: "2025-08-01",
+      level: 95,
+      name: "Lughnasadh",
+      description:
+        "Harvest strength flows through the Oak King's ancient wisdom.",
+    },
+    {
+      date: "2025-02-01",
+      level: 25,
+      name: "Imbolc",
+      description: "First stirrings of power as winter's grip slowly loosens.",
+    },
+    {
+      date: "2025-10-31",
+      level: 35,
+      name: "Samhain",
+      description:
+        "Moderate power tinged with the mystery of the thinning veil.",
+    },
+  ];
+
+  function calculatePowerLevel() {
+    const today = new Date();
+    const currentDateStr = today.toISOString().split("T")[0];
+
+    // Find the closest date
+    let closestDate = seasonalDates[0];
+    let minDiff = Math.abs(
+      new Date(currentDateStr) - new Date(closestDate.date)
+    );
+
+    seasonalDates.forEach((dateObj) => {
+      const diff = Math.abs(new Date(currentDateStr) - new Date(dateObj.date));
+      if (diff < minDiff) {
+        minDiff = diff;
+        closestDate = dateObj;
+      }
+    });
+
+    // Calculate days difference
+    const daysDiff = minDiff / (1000 * 60 * 60 * 24);
+
+    // Adjust power level based on proximity (closer = more accurate to the stated level)
+    let adjustedLevel = closestDate.level;
+    if (daysDiff > 30) {
+      adjustedLevel = Math.max(10, adjustedLevel - (daysDiff - 30) * 0.5);
+    }
+
+    return {
+      level: Math.round(adjustedLevel),
+      closest: closestDate,
+      daysDiff: Math.round(daysDiff),
+    };
+  }
+
+  function createConfetti() {
+    const colors = [
+      "#d4af37",
+      "#32cd32",
+      "#ff6b6b",
+      "#4169e1",
+      "#ffd700",
+      "#ff69b4",
+    ];
+
+    for (let i = 0; i < 50; i++) {
+      const confetti = document.createElement("div");
+      confetti.className = "confetti";
+      confetti.style.left = Math.random() * 100 + "vw";
+      confetti.style.background =
+        colors[Math.floor(Math.random() * colors.length)];
+      confetti.style.animationDelay = Math.random() * 3 + "s";
+      confetti.style.animationDuration = Math.random() * 2 + 2 + "s";
+
+      if (Math.random() > 0.5) {
+        confetti.style.borderRadius = "50%";
+      }
+
+      document.body.appendChild(confetti);
+
+      // Remove confetti after animation
+      setTimeout(() => {
+        if (confetti.parentNode) {
+          confetti.parentNode.removeChild(confetti);
+        }
+      }, 5000);
+    }
+  }
+
+  function celebrate() {
+    createConfetti();
+  }
+
+  function updateDisplay() {
+    const today = new Date();
+    const power = calculatePowerLevel();
+
+    // Update speech text based on power level
+    const speechElement = document.getElementById("speechText");
+    let speechText;
+
+    if (power.level >= 80) {
+      speechText = `"I feel incredibly strong! My strength surges through every branch and root!"`;
+      // Trigger celebration for great strength
+      celebrate();
+    } else if (power.level >= 50) {
+      speechText = `"I feel moderately strong. My power flows steadily."`;
+    } else {
+      speechText = `"I feel weak... My strength is low right now."`;
+    }
+
+    speechElement.textContent = speechText;
+  }
+
+  // Initialize
+  updateDisplay();
+
+  // Update every hour
+  setInterval(updateDisplay, 3600000);
+</script>
